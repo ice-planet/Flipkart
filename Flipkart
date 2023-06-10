@@ -1,0 +1,32 @@
+package package1;
+
+import java.util.Set;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Flipkart {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chromedriver.driver", "chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://www.flipkart.com/");
+		
+		String parentWindowHandle = driver.getWindowHandle(); //Get the handle of parent window
+		Set<String> windowHandles= driver.getWindowHandles(); //Get all the window handles
+		
+		for(String handle: windowHandles) {
+			if(!handle.equals(parentWindowHandle)) {
+				driver.switchTo().window(handle); //switch control to pop up window
+				break;
+			}
+		}
+		driver.close();
+		driver.switchTo().window(parentWindowHandle);
+		Homepage home= new Homepage(driver);
+		home.click();
+		home.check();
+		home.verify();
+		home.uncheck();
+	}
+}
