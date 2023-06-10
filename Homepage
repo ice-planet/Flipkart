@@ -1,0 +1,65 @@
+package package1;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+public class Homepage {
+
+	WebDriver driver;
+	
+	//Constructor that will be automatically  called as soon as the object class is created
+	
+	public Homepage(WebDriver driver) {
+		this.driver= driver;
+	}
+	//Locators for mobile button
+	By mble= By.xpath("/html/body/div[1]/div/div[2]/div/div/div[2]/a/div[2]");
+	
+	//Locators for check button
+	By chk1= By.xpath("/html/body/div[1]/div/div[3]/div[2]/div[1]/div/section[3]/div[2]/div[1]/div[2]/div/label/div[1]");
+	By chk2= By.xpath("/html/body/div[1]/div/div[3]/div[2]/div[1]/div/section[3]/div[2]/div[1]/div[3]/div/label/div[1]");
+	By chk3= By.xpath("/html/body/div[1]/div/div[3]/div[2]/div[1]/div/section[3]/div[2]/div[1]/div[4]/div/label/div[1]");
+	
+	//Locators for filter
+	By filter= By.xpath("/html/body/div[1]/div/div[3]/div/div[1]/div/div[1]/div/section[1]/div[2]/div[1]");
+	
+	//Locators for cross signs
+	By cross= By.xpath("/html/body/div[1]/div/div[3]/div/div[1]/div/div[1]/div/section[1]/div[2]/div[1]/div[1]/div[2]");
+	
+	//Method to click the mobile button
+	public void click() {
+		driver.findElement(mble).click();
+	}
+	
+	//Method to check for the brands
+	public void check() throws InterruptedException {
+		driver.findElement(chk1).click();
+		Thread.sleep(2000);
+		driver.findElement(chk2).click();
+		Thread.sleep(2000);
+		driver.findElement(chk3).click();
+		Thread.sleep(2000);
+		
+	}
+	
+	public boolean verify() {
+		driver.findElement(filter).isDisplayed();
+		return true;
+	}
+	
+	public void uncheck() throws InterruptedException {
+		driver.findElement(cross).click();
+		Thread.sleep(2000);
+		driver.findElement(cross).click();
+		Thread.sleep(2000);
+		driver.findElement(cross).click();
+		Thread.sleep(2000);
+		}
+	
+	
+	
+	
+	
+	
+	
+}
